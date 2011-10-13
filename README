@@ -1,0 +1,70 @@
+= gitolite-tools
+
+gitolite にキーを登録するスクリプト
+
+
+== requirements
+
+* bash 4.1-2ubuntu3
+
+
+== INSTALL
+
+  $ cp sample.gitolite.rc $HOME/.gitolite.rc
+  $ edit $HOME/.gitolite.rc
+  gitolite_host="gitolite サーバーホスト or IP アドレス"
+
+
+== 設定
+
+* $HOME/.gitolite.rc
+ * gitolite_host="gitolite サーバーホスト or IP アドレス"
+
+
+== create_root_user.sh
+
+gitolite サーバー上で、自分のユーザーアカウントから gitolite の root ユーザーにアクセスできるようにする
+
+  $ ./create_root_user.sh
+  
+  ssh-keygen が走るので、パスフレーズを「空」で作る
+  最後に表示される内容を .ssh/config に追記する
+  
+  $ edit .ssh/config
+  ...
+  
+  $ ssh root-ans-git info
+  (gitolite から、アクセスできるリポジトリが返されることを確認)
+  
+  $ git clone root-ans-git:gitolite-admin
+  (今後の設定のために、 home に gitolite-admin をチェックアウトしておく)
+
+== create_user.sh
+
+gitolite サーバー上で、自分のユーザーアカウントから gitolite の 自分のユーザーアカウント名 ユーザーにアクセスできるようにする
+
+  $ ./create_user.sh
+  
+  ssh-keygen が走るので、パスフレーズを「空」で作る
+  最後に表示される内容を .ssh/config に追記する
+  
+  $ edit .ssh/config
+  ...
+  
+  $ ssh $USER-ans-git info
+  (gitolite から、アクセスできるリポジトリが返されることを確認)
+
+== install_gitolite_key.sh
+
+gitolite サーバー以外の機械で、自分のユーザーアカウントから gitolite の ユーザー にアクセスできるようにする
+
+  $ ./install_gitolite_key.sh <ユーザー>
+  
+  ssh-keygen が走るので、パスフレーズを「空」で作る
+  最後に表示される内容を .ssh/config に追記する
+  
+  $ edit .ssh/config
+  ...
+  
+  $ ssh <ユーザー>-ans-git info
+  (gitolite から、アクセスできるリポジトリが返されることを確認)
