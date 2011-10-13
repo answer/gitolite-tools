@@ -1,6 +1,11 @@
 #!/bin/bash
 
-git_host=git.ans-web.co.jp
+[ -f $HOME/.gitolite-tools.rc ] && . $HOME/.gitolite-tools.rc
+
+if [ -z "$gitolite_host" ]; then
+	echo "define gitolite_host var in $HOME/.gitolite-tools.rc"
+	exit
+fi
 
 if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
@@ -18,5 +23,5 @@ echo "append following content to .ssh/config"
 echo
 echo "Host root-ans-git"
 echo "  User         gitolite"
-echo "  HostName     $git_host"
+echo "  HostName     $gitolite_host"
 echo "  IdentityFile ~/.ssh/gitolite/root"
