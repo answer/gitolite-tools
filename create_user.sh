@@ -10,7 +10,15 @@ if [ -z "$gitolite_user" ]; then
 	gitolite_user=gitolite
 fi
 
-user=$USER
+usage(){
+	echo 'self.sh <user>'
+	exit
+}
+
+if [ $# -lt 1 ]; then
+	usage
+fi
+user=$1; shift
 
 if [ ! -d ~/.ssh ]; then
 	mkdir ~/.ssh
