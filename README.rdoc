@@ -19,7 +19,7 @@ gitolite にキーを登録するスクリプト
 
   $ cp sample.gitolite.rc $HOME/.gitolite.rc
   $ edit $HOME/.gitolite.rc
-  gitolite_host="gitolite サーバーホスト or IP アドレス"
+  (下記「設定」参照)
 
 
 == 作成されるファイル
