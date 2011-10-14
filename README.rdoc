@@ -3,9 +3,16 @@
 gitolite にキーを登録するスクリプト
 
 
-== requirements
+== 動作確認環境
 
 * bash 4.1-2ubuntu3
+
+
+== 前提
+
+* gitolite インストール済み
+* gitolite ユーザーのホームディレクトリに gitolite-admin がチェックアウトされている
+* gitolite ユーザーの ~/gitolite-admin で git push が引数なしで通る
 
 
 == INSTALL
@@ -15,10 +22,18 @@ gitolite にキーを登録するスクリプト
   gitolite_host="gitolite サーバーホスト or IP アドレス"
 
 
+== 作成されるファイル
+
+* ssh 鍵 : ~/.ssh/gitolite/<ユーザー名>[.pub]
+
+
 == 設定
 
 * $HOME/.gitolite.rc
- * gitolite_host="gitolite サーバーホスト or IP アドレス"
+  * gitolite_host="gitolite サーバーホスト or IP アドレス (設定必須)"
+  * gitolite_user="gitolite をインストールしたユーザーアカウント (default: gitolite)"
+  * gitolite_home="gitolite のホームディレクトリ (default: /home/$gitolite_user)"
+  * gitolite_admin_user="gitolite サーバーホスト or IP アドレス (default: root)"
 
 
 == create_root_user.sh
@@ -39,6 +54,7 @@ gitolite サーバー上で、自分のユーザーアカウントから gitolit
   $ git clone root-ans-git:gitolite-admin
   (今後の設定のために、 home に gitolite-admin をチェックアウトしておく)
 
+
 == create_user.sh
 
 gitolite サーバー上で、自分のユーザーアカウントから gitolite の 自分のユーザーアカウント名 ユーザーにアクセスできるようにする
@@ -53,6 +69,7 @@ gitolite サーバー上で、自分のユーザーアカウントから gitolit
   
   $ ssh $USER-ans-git info
   (gitolite から、アクセスできるリポジトリが返されることを確認)
+
 
 == install_gitolite_key.sh
 

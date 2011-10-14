@@ -6,6 +6,9 @@ if [ -z "$gitolite_host" ]; then
 	echo "define gitolite_host var in $HOME/.gitolite-tools.rc"
 	exit
 fi
+if [ -z "$gitolite_user" ]; then
+	gitolite_user=gitolite
+fi
 
 user=$USER
 
@@ -24,6 +27,6 @@ echo "finished"
 echo "append following content to .ssh/config"
 echo
 echo "Host $user-ans-git"
-echo "  User         gitolite"
+echo "  User         $gitolite_user"
 echo "  HostName     $gitolite_host"
 echo "  IdentityFile ~/.ssh/gitolite/$user"
