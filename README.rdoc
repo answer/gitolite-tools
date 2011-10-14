@@ -57,9 +57,9 @@ gitolite サーバー上で、自分のユーザーアカウントから gitolit
 
 == create_user.sh
 
-gitolite サーバー上で、自分のユーザーアカウントから gitolite の 自分のユーザーアカウント名 ユーザーにアクセスできるようにする
+gitolite サーバー上で、自分のユーザーアカウントから gitolite の ユーザー にアクセスできるようにする
 
-  $ ./create_user.sh
+  $ ./create_user.sh <ユーザー>
   
   ssh-keygen が走るので、パスフレーズを「空」で作る
   最後に表示される内容を .ssh/config に追記する
@@ -67,7 +67,7 @@ gitolite サーバー上で、自分のユーザーアカウントから gitolit
   $ edit .ssh/config
   ...
   
-  $ ssh $USER-ans-git info
+  $ ssh <ユーザー>-ans-git info
   (gitolite から、アクセスできるリポジトリが返されることを確認)
 
 
