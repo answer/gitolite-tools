@@ -1,0 +1,7 @@
+ {
+	daily
+	missingok
+	rotate 14
+	dateext
+	extension .tar.gz
+}
