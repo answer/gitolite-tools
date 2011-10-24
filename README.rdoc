@@ -24,7 +24,7 @@ gitolite にキーを登録するスクリプト
 
 == 作成されるファイル
 
-* ssh 鍵 : ~/.ssh/gitolite/<ユーザー名>[.pub]
+* ssh 鍵 : ~/.ssh/$gitolite_keydir/<ユーザー名>[.pub]
 
 
 == 設定
@@ -33,6 +33,7 @@ gitolite にキーを登録するスクリプト
   * gitolite_host="gitolite サーバーホスト or IP アドレス (設定必須)"
   * gitolite_user="gitolite をインストールしたユーザーアカウント (default: gitolite)"
   * gitolite_home="gitolite のホームディレクトリ (default: /home/$gitolite_user)"
+  * gitolite_keydir="gitolite の鍵をインストールするディレクトリ (default: gitolite)"
   * gitolite_admin_user="gitolite サーバーホスト or IP アドレス (default: root)"
 
 
