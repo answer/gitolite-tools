@@ -125,7 +125,7 @@ gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repo
     * gitolite_backup_prefix="バックアップディレクトリの接頭辞 (default: gitolite-backup)"
   * アーカイブ
     * gitolite_archive_path="アーカイブディレクトリのパス (default: ~/.gitolite.archives)"
-    * gitolite_archive_logrotate_path="logrotate 設定ディレクトリのパス (default: ~/gitolite-tools/logrotate.d)"
+    * gitolite_tools_root="gitolite-tools のデプロイパス (default: ~/gitolite-tools)"
 
 
 == repo-backup.sh

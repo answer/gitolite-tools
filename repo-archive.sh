@@ -8,8 +8,8 @@ fi
 if [ -z "$gitolite_archive_path" ]; then
 	gitolite_archive_path=~/.gitolite.archives
 fi
-if [ -z "$gitolite_archive_logrotate_path" ]; then
-	gitolite_archive_logrotate_path=~/gitolite-tools/logrotate.d
+if [ -z "$gitolite_tools_root" ]; then
+	gitolite_tools_root=~/gitolite-tools
 fi
 
 if [ ! -d "$gitolite_archive_path" ]; then
@@ -24,6 +24,6 @@ archive=$gitolite_archive_path/backup.tar.gz
 conf=$gitolite_archive_path/logrotate.conf
 
 echo -n $archive >> $conf
-cat $gitolite_archive_logrotate_path/archive >> $conf
+cat $gitolite_tools_root/logrotate.d/archive >> $conf
 
 rm -f "$archive" && /bin/tar zcf "$archive" "$gitolite_repo_path" && /usr/sbin/logrotate $conf
