@@ -9,6 +9,9 @@ fi
 
 repository_path=$1; shift
 
+if [ -z "$gitolite_repo_path" ]; then
+	gitolite_repo_path=~/repositories
+fi
 if [ -z "$gitolite_backup_path" ]; then
 	gitolite_backup_path=~/.gitolite.backup
 fi
@@ -25,7 +28,7 @@ if [ ! -d "$gitolite_backup_path" ]; then
 fi
 
 deploy_path=$repository_path
-deploy_path=${deploy_path#$git_root}
+deploy_path=${deploy_path#$gitolite_repo_path}
 deploy_path=${deploy_path%.git}
 
 backup_path=$gitolite_backup_path$deploy_path
