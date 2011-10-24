@@ -1,18 +1,12 @@
 = gitolite-tools
 
-gitolite にキーを登録するスクリプト
+* gitolite にキーを登録
+* gitolite のリポジトリをバックアップ
 
 
 == 動作確認環境
 
-* bash 4.1-2ubuntu3
-
-
-== 前提
-
-* gitolite インストール済み
-* gitolite ユーザーのホームディレクトリに gitolite-admin がチェックアウトされている
-* gitolite ユーザーの ~/gitolite-admin で git push が引数なしで通る
+* ubuntu bash
 
 
 == INSTALL
@@ -20,6 +14,15 @@ gitolite にキーを登録するスクリプト
   $ cp sample.gitolite.rc $HOME/.gitolite.rc
   $ edit $HOME/.gitolite.rc
   (下記「設定」参照)
+
+
+= gitolite にキーを登録
+
+== 前提
+
+* gitolite インストール済み
+* gitolite ユーザーのホームディレクトリに gitolite-admin がチェックアウトされている
+* gitolite ユーザーの ~/gitolite-admin で git push が引数なしで通る
 
 
 == 作成されるファイル
@@ -86,3 +89,53 @@ gitolite サーバー以外の機械で、自分のユーザーアカウント�
   
   $ ssh <ユーザー>-ans-git info
   (gitolite から、アクセスできるリポジトリが返されることを確認)
+
+
+
+= gitolite のリポジトリをバックアップ
+
+gitolite ユーザーでバックアップホストに push して、 gitolite-backup ユーザーでアーカイブを作成する
+
+gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repositories に移せばそのまま稼働できる
+
+
+== 前提
+
+* バックアップ用 gitolite インストール済み
+* バックアップ
+  * リポジトリディレクトリの読み込み権限がある
+  * リポジトリをバックアップするホストにパスワードなしで push 出来る
+* アーカイブ
+  * アーカイブディレクトリに書き込み権限がある
+
+
+== 作成されるファイル
+
+* バックアップ : ~/.gitolite.backup
+* アーカイブ : ~/.gitolite.archives
+
+
+== 設定
+
+* $HOME/.gitolite.rc
+  * バックアップ
+    * gitolite_backup_ssh="バックアップホストへ push するための ssh エイリアス (設定必須)"
+    * gitolite_repo_path="gitolite リポジトリディレクトリのパス (default: ~/repositories)"
+    * gitolite_backup_path="バックアップディレクトリのパス (default: ~/.gitolite.backup)"
+    * gitolite_backup_prefix="バックアップディレクトリの接頭辞 (default: gitolite-backup)"
+  * アーカイブ
+    * gitolite_archive_path="アーカイブディレクトリのパス (default: ~/.gitolite.archives)"
+    * gitolite_archive_logrotate_path="logrotate 設定ディレクトリのパス (default: ~/gitolite-tools/logrotate.d)"
+
+
+== repo-backup.sh
+
+1. $gitolite_repo_path に存在する *.git ディレクトリを検索
+1. リポジトリを ~/.gitolite.backup 以下に clone
+1. リポジトリを $gitolite_backup_ssh に push
+
+== repo-archive.sh
+
+1. $gitolite_repo_path を $gitolite_archive_path に tar.gz でアーカイブ化
+1. logrotate を使って世代管理
+
