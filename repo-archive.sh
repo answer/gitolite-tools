@@ -20,10 +20,9 @@ if [ ! -d "$gitolite_archive_path" ]; then
 	exit
 fi
 
-archive=$gitolite_archive_path/backup.tar.gz
-conf=$gitolite_archive_path/logrotate.conf
+parent=`dirname "$gitolite_repo_path"`
+name=`basename "$gitolite_repo_path"`
+cd "$parent"
 
-echo -n $archive >> $conf
-cat $gitolite_tools_root/logrotate.d/archive >> $conf
-
-rm -f "$archive" && /bin/tar zcf "$archive" "$gitolite_repo_path" && /usr/sbin/logrotate $conf
+archive=$gitolite_archive_path/backup-`/bin/date --rfc-3339=date`.tar.gz
+rm -f "$archive" && /bin/tar zcf "$archive" "$name"
