@@ -96,6 +96,10 @@ gitolite サーバー以外の機械で、自分のユーザーアカウント�
 
 gitolite ユーザーでバックアップホストに push して、 gitolite-backup ユーザーでアーカイブを作成する
 
+gitolite が稼動している機械と gitolite-backup を稼働させる機械は別なものにしないと意味が薄い
+
+アーカイブしたファイルはどこか別な場所にコピーしないと意味が薄い
+
 gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repositories に移せばそのまま稼働できる
 
 
@@ -138,5 +142,5 @@ gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repo
 == repo-archive.sh
 
 1. $gitolite_repo_path を $gitolite_archive_path に tar.gz でアーカイブ化
-1. logrotate を使って世代管理
+1. $gitolite_archive_expire_days 日以前のアーカイブは削除
 
