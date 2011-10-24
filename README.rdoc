@@ -96,6 +96,8 @@ gitolite サーバー以外の機械で、自分のユーザーアカウント�
 
 gitolite ユーザーでバックアップホストに push して、 gitolite-backup ユーザーでアーカイブを作成する
 
+gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repositories に移せばそのまま稼働できる
+
 
 == 前提
 
@@ -120,6 +122,7 @@ gitolite ユーザーでバックアップホストに push して、 gitolite-b
     * gitolite_backup_ssh="バックアップホストへ push するための ssh エイリアス (設定必須)"
     * gitolite_repo_path="gitolite リポジトリディレクトリのパス (default: ~/repositories)"
     * gitolite_backup_path="バックアップディレクトリのパス (default: ~/.gitolite.backup)"
+    * gitolite_backup_prefix="バックアップディレクトリの接頭辞 (default: gitolite-backup)"
   * アーカイブ
     * gitolite_archive_path="アーカイブディレクトリのパス (default: ~/.gitolite.archives)"
     * gitolite_archive_logrotate_path="logrotate 設定ディレクトリのパス (default: ~/gitolite-tools/logrotate.d)"
