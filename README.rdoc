@@ -126,6 +126,7 @@ gitolite-backup の repositories/$gitolite_backup_prefix を元の gitolite/repo
   * アーカイブ
     * gitolite_archive_path="アーカイブディレクトリのパス (default: ~/.gitolite.archives)"
     * gitolite_tools_root="gitolite-tools のデプロイパス (default: ~/gitolite-tools)"
+    * gitolite_archive_expire_days="アーカイブを保持する日数 (default: 14)"
 
 
 == repo-backup.sh
