@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ -f ~/.github-tools.rc ] && . ~/.github-tools.rc
+[ -f ~/.gitolite-tools.rc ] && . ~/.gitolite-tools.rc
 
 if [ -z "$gitolite_repo_path" ]; then
 	gitolite_repo_path=~/repositories
