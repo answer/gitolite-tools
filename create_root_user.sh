@@ -28,7 +28,7 @@ if [ ! -d ~/.ssh/$gitolite_keydir ]; then
 	mkdir ~/.ssh/$gitolite_keydir
 fi
 
-ssh-keygen -f ~/.ssh/$gitolite_keydir/$gitolite_admin_user && sudo cp .ssh/$gitolite_keydir/$gitolite_admin_user.pub $gitolite_home && sudo -u $gitolite_user sh -c 'cd $2/gitolite-admin && mkdir -p keydir/$0/$1 && cp $2/$3.pub keydir/$0/$1 && rm -f $2/$3.pub && git pull && git add "keydir/$0/$1/$3.pub" && git commit -m "add $USER.$3 key" && git push' $gitolite_admin_user `hostname` $gitolite_home
+ssh-keygen -f ~/.ssh/$gitolite_keydir/$gitolite_admin_user && sudo cp .ssh/$gitolite_keydir/$gitolite_admin_user.pub $gitolite_home && sudo -u $gitolite_user sh -c 'cd $3/gitolite-admin && mkdir -p keydir/$0/$1/$2 && cp $3/$1.pub keydir/$0/$1/$2 && rm -f $3/$1.pub && git pull && git add . && git commit -m "add $0.$1 key" && git push' $USER $gitolite_admin_user `hostname` $gitolite_home
 
 echo "finished"
 echo "append following content to .ssh/config"
