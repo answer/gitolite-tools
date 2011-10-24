@@ -1,6 +1,6 @@
 #!/bin/bash
 
-[ -f ~/.github-tools.rc ] && . ~/.github-tools.rc
+[ -f ~/.gitolite-tools.rc ] && . ~/.gitolite-tools.rc
 
 if [ -z "$gitolite_backup_ssh" ]; then
 	echo "define gitolite_backup_ssh var in ~/.gitolite-tools.rc"
